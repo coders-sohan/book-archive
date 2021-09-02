@@ -6,7 +6,7 @@ const bookDetails = document.getElementById('show-detail');
 
 // button interaction when clicked
 
-document.getElementById('search-btn').addEventListener('click', function () {
+document.getElementById('search-btn').addEventListener('click', () => {
 
     // spinner
     
