@@ -1,5 +1,5 @@
 // get input
-
+const bookCount = document.createElement('h3');
 const getInput = document.getElementById('book-name');
 const bookContainer = document.getElementById('book-container');
 const bookDetails = document.getElementById('show-detail');
@@ -9,12 +9,12 @@ document.getElementById('search-btn').addEventListener('click', function () {
 
     bookContainer.innerHTML = `
     <div class="w-100 h-100 d-flex justify-content-center align-items-center">
-        <div class="spinner-border text-info" role="status">
+        <div class="spinner-border text-danger" role="status">
         <span class="visually-hidden">Loading...</span>
         </div>
     </div>
     `;
-    const api = `http://openlibrary.org/search.json?q=${getInput.value}`;
+    const api = `https://openlibrary.org/search.json?q=${getInput.value}`;
     getInput.value = '';
     fetch(api)
         .then(res => res.json())
@@ -27,11 +27,11 @@ const showBookData = (books) => {
 
     if (bookArr.length === 0) {
         
-        bookContainer.innerHTML = `No Result Found`;
+        bookCount.innerHTML = '';
+        bookContainer.innerHTML = `<h4 class="mx-auto text-center text-warning">No Result Found !!</h4>`;
 
     } else {
         
-        const bookCount = document.createElement('h3');
         bookCount.innerHTML = `Total book is ${bookArr.length}`;
         bookDetails.innerHTML = '';
         bookDetails.appendChild(bookCount);
@@ -40,9 +40,9 @@ const showBookData = (books) => {
         bookArr.forEach(book => {
 
             const div = document.createElement('div');
-            div.classList.add('card');
+            div.classList.add('card', 'm-2' );
             div.innerHTML= `
-                <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" style="height: 200; width: 200px;" alt="${book.title}">
+                <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" style="height: 200; width: 100%;" alt="${book.title}">
                 <div class="card-body">
                     <h5 class="card-title">${book.title}</h5>
                     <p class="card-text">${book.publisher[0]}</p>
