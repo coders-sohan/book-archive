@@ -32,7 +32,7 @@ const showBookData = (books) => {
 
     } else {
         
-        bookCount.innerHTML = `<h4 class="mx-auto text-center text-primary">Total book is ${bookArr.length}</h4>`;
+        bookCount.innerHTML = `<h4 class="mx-auto text-center rounded bg-info text-white">Total book is ${bookArr.length}</h4>`;
         bookDetails.innerHTML = '';
         bookDetails.appendChild(bookCount);
 
@@ -42,12 +42,12 @@ const showBookData = (books) => {
             const div = document.createElement('div');
             div.classList.add('card', 'm-2' );
             div.innerHTML= `
-                <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" style="height: 200; width: 100%; margin-top: 15px;" alt="${book.title}">
+                <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" style="height: 350px; width: 100%; margin-top: 15px;" alt="${book.title}">
                 <div class="card-body">
-                    <h5 class="card-title">${book.title}</h5>
-                    <p class="card-text">${book.author_name[0]}</p>
-                    <p class="card-text">${book.publisher[0]}</p>
-                    <p class="card-text">${book.first_publish_year}</p>
+                    <h5 class="card-title text-primary my-3">${book.title}</h5>
+                    <p class="card-text text-info">${book.author_name[0]}</p>
+                    <p class="card-text text-danger">${book.publisher[0]}</p>
+                    <p class="card-text text-secondary">${book.first_publish_year}</p>
                 </div>
             `;
             bookContainer.appendChild(div);
