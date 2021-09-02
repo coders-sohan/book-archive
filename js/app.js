@@ -1,12 +1,15 @@
-// get input
+// get all needed id
 const bookCount = document.createElement('h3');
 const getInput = document.getElementById('book-name');
 const bookContainer = document.getElementById('book-container');
 const bookDetails = document.getElementById('show-detail');
 
+// button interaction when clicked
 
 document.getElementById('search-btn').addEventListener('click', function () {
 
+    // spinner
+    
     bookContainer.innerHTML = `
     <div class="w-100 h-100 d-flex justify-content-center align-items-center">
         <div class="spinner-border text-danger" role="status">
@@ -14,15 +17,20 @@ document.getElementById('search-btn').addEventListener('click', function () {
         </div>
     </div>
     `;
+
+    // get api
     const api = `https://openlibrary.org/search.json?q=${getInput.value}`;
     getInput.value = '';
     fetch(api)
         .then(res => res.json())
         .then(data => showBookData(data.docs))
+
 });
 
 const showBookData = (books) => {
     
+    // filter output for better result 
+
     let bookArr = books.filter(arr => arr.cover_i !== undefined && arr.author_name !== undefined && arr.publisher !== undefined && arr.title !== undefined && arr.first_publish_year !== undefined);
 
     if (bookArr.length === 0) {
@@ -37,7 +45,12 @@ const showBookData = (books) => {
         bookDetails.appendChild(bookCount);
 
         bookContainer.innerHTML = '';
+
+        // get data one by one
+
         bookArr.forEach(book => {
+
+            // creat element to show data
 
             const div = document.createElement('div');
             div.classList.add('card', 'm-2' );
